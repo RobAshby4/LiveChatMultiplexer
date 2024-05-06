@@ -41,18 +41,6 @@ namespace LiveChatMultiplexer
             }
 
             Console.WriteLine(outList.Count);
-
-            // Console.WriteLine("Starting Multiplexer");
-
-            // var options = new ChromeOptions();
-            // options.AddArgument("--headless=new");
-            // var driver = new ChromeDriver(options);
-
-            // driver.Url = "https://www.google.com";
-            // driver.FindElement(By.Name("q")).SendKeys("webdriver" + Keys.Return);
-            // Console.WriteLine(driver.Title);
-
-            // driver.Quit();
         }
 
     }

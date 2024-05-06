@@ -27,10 +27,10 @@ namespace LiveChatMultiplexer
         {
         }
 
-        // driver.Url = "https://www.google.com";
-        // driver.FindElement(By.Name("q")).SendKeys("webdriver" + Keys.Return);
-        // Console.WriteLine(driver.Title);
+        public void exit()
+        {
+            driver.Quit();
+        }
 
-        // driver.Quit();
     }
 }
