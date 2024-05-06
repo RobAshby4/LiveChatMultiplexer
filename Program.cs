@@ -16,7 +16,7 @@ namespace LiveChatMultiplexer
             // generate all of the ChatMonitors
             for (int i = 0; i < 1; i++)
             {
-                monitors.Add(new ChatThread(Platform.Twitch, ""));
+                monitors.Add(new ChatThread(Platform.Twitch, args[0]));
             }
             ChatThread.setCallbackList(outList);
 
