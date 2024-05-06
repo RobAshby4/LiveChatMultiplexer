@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
-using System.Threading;
+﻿using System.Threading;
 using System.Collections;
 
 namespace LiveChatMultiplexer
@@ -16,14 +14,14 @@ namespace LiveChatMultiplexer
             ArrayList threads = new ArrayList();
 
             // generate all of the ChatMonitors
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 1; i++)
             {
-                monitors.Add(new ChatMonitor(Platform.Twitch, "Thread " + i.ToString()));
+                monitors.Add(new ChatThread(Platform.Twitch, ""));
             }
-            ChatMonitor.setCallbackList(outList);
+            ChatThread.setCallbackList(outList);
 
             // Give Each of them Threads and start them
-            foreach (ChatMonitor m in monitors)
+            foreach (ChatThread m in monitors)
             {
                 Thread newThread = new Thread(new ThreadStart(m.runMonitor));
                 threads.Add(newThread);
