@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using System.Collections;
 
 namespace LiveChatMultiplexer
@@ -14,9 +14,20 @@ namespace LiveChatMultiplexer
             ArrayList threads = new ArrayList();
 
             // generate all of the ChatMonitors
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < args.Length; i++)
             {
-                monitors.Add(new ChatThread(Platform.Twitch, args[0]));
+                if (args[i].Contains("twitch.tv"))
+                {
+                    monitors.Add(new ChatThread(Platform.Twitch, args[i]));
+                }
+                else if (args[i].Contains("Youtube.com"))
+                {
+                    monitors.Add(new ChatThread(Platform.YouTube, args[i]));
+                }
+                else
+                {
+                    Console.WriteLine("platform not supported: " + args[i]);
+                }
             }
             ChatThread.setCallbackList(outList);
 
@@ -46,4 +57,3 @@ namespace LiveChatMultiplexer
     }
 
 }
-
