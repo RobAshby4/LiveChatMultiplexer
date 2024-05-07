@@ -9,9 +9,9 @@ namespace LiveChatMultiplexer
 
         public static void Main(String[] args)
         {
-            ArrayList outList = new ArrayList();
-            ArrayList monitors = new ArrayList();
-            ArrayList threads = new ArrayList();
+            List<Message> outList = new List<Message>();
+            List<ChatThread> monitors = new List<ChatThread>();
+            List<Thread> threads = new List<Thread>();
 
             // generate all of the ChatMonitors
             for (int i = 0; i < args.Length; i++)
@@ -46,9 +46,9 @@ namespace LiveChatMultiplexer
             }
 
             // print the callback list
-            foreach (String output in outList)
+            foreach (Message output in outList)
             {
-                Console.WriteLine(output);
+                Console.WriteLine(output.contents);
             }
 
             Console.WriteLine(outList.Count);

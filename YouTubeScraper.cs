@@ -9,12 +9,12 @@ namespace LiveChatMultiplexer
         private String url;
         private ChromeOptions options;
         private ChromeDriver driver;
-        private ArrayList newMessages = new ArrayList();
+        private List<Message> newMessages = new List<Message>();
         public YouTubeScraper(String url) 
         {
             this.url = url;
             this.options = new ChromeOptions();
-            // this.options.AddArgument("--headless=new");
+            this.options.AddArgument("--headless=new");
             this.driver = new ChromeDriver(this.options);
         }
 
@@ -23,7 +23,7 @@ namespace LiveChatMultiplexer
             this.driver.Url = this.url;
         }
 
-        public void Poll(ArrayList updates)
+        public void Poll(List<Message> updates)
         {
         }
 

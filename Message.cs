@@ -5,8 +5,8 @@ namespace LiveChatMultiplexer
     public class Message
     {
         public Guid guid = Guid.NewGuid();
-        private String username;
-        private String contents;
+        public String username;
+        public String contents;
 
         public Message(String username, String contents)
         {
