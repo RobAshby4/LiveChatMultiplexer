@@ -33,6 +33,7 @@ namespace LiveChatMultiplexer
                 {
                     IWebElement textElem = elem.FindElement(By.ClassName("text-fragment"));
                     text = textElem.Text;
+                    // TODO: Check for if message has already been read. If not mark it as read
                 }
                 catch (Exception)
                 {
