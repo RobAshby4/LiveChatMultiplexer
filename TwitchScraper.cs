@@ -14,7 +14,7 @@ namespace LiveChatMultiplexer
         {
             this.url = url;
             this.options = new ChromeOptions();
-            this.options.AddArgument("--headless=new");
+            // this.options.AddArgument("--headless=new");
             this.driver = new ChromeDriver(this.options);
         }
 
@@ -23,27 +23,38 @@ namespace LiveChatMultiplexer
             this.driver.Url = this.url;
         }
 
-        public void Poll(List<Message> updates)
+        public List<Message> Poll(List<Message> previous)
         {
-            var elems = driver.FindElements(By.ClassName("chat-line__message"));
-            foreach (IWebElement elem in elems)
+            List<Message> updates = new List<Message>();
+            try 
             {
-                String text = "";
-                try
+                var elems = driver.FindElements(By.ClassName("chat-line__message"));
+                foreach (IWebElement elem in elems)
                 {
-                    IWebElement textElem = elem.FindElement(By.ClassName("text-fragment"));
-                    text = textElem.Text;
-                    // TODO: Check for if message has already been read. If not mark it as read
+                    try
+                    {
+                        IWebElement textElem = elem.FindElement(By.ClassName("text-fragment"));
+                        String text = textElem.Text;
+                        updates.Add(new Message("username", text));
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
                 }
-                catch (Exception)
-                {
-                    continue;
-                }
-                updates.Add(new Message("username", text));
-            }
-        }
 
-        public void exit()
+                driver.ExecuteScript("document.querySelectorAll('.chat-line__message').forEach(function(element) {element.remove();})");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("broke ya");
+                return updates;
+            }
+            return updates;
+        }
+        // figure out better way to make this work. nesting try/catch is icky
+
+        public void Exit()
         {
             driver.Quit();
         }

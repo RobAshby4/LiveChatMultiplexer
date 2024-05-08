@@ -5,6 +5,7 @@ namespace LiveChatMultiplexer
     public interface IChatMonitor
     {
         public void InitChat();
-        public void Poll(List<Message> updates);
+        public List<Message> Poll(List<Message> previous);
+        public void Exit();
     }
 }

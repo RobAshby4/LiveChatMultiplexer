@@ -44,22 +44,24 @@ namespace LiveChatMultiplexer
         {
             List<Message> updates = new List<Message>();
             chatMonitor.InitChat();
-            Thread.Sleep(1000);
-            chatMonitor.Poll(updates);
+            Thread.Sleep(5000);
+            updates = chatMonitor.Poll(updates);
             writeToCallback(updates);
-            updates = new List<Message>();
-            Thread.Sleep(1000);
-            chatMonitor.Poll(updates);
+            Thread.Sleep(1500);
+            updates = chatMonitor.Poll(updates);
             writeToCallback(updates);
-            updates = new List<Message>();
-            Thread.Sleep(1000);
-            chatMonitor.Poll(updates);
+            Thread.Sleep(1500);
+            updates = chatMonitor.Poll(updates);
+            writeToCallback(updates);
+            Thread.Sleep(1500);
+            updates = chatMonitor.Poll(updates);
             writeToCallback(updates);
         }
 
         private void writeToCallback(List<Message> updates)
         {
             writeMut.WaitOne();
+            Console.WriteLine("Writing to main");
             foreach (var c in updates)
             {
                 ChatThread.callbackList.Add(c);

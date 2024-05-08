@@ -23,11 +23,12 @@ namespace LiveChatMultiplexer
             this.driver.Url = this.url;
         }
 
-        public void Poll(List<Message> updates)
+        public List<Message> Poll(List<Message> previous)
         {
+            throw new NotImplementedException();
         }
 
-        public void exit()
+        public void Exit()
         {
             driver.Quit();
         }
